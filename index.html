@@ -580,7 +580,7 @@ async function fight(i,teach){bgm(teach!=null?"dojo":"battle");
  const dj=teach!=null,m0=S.m,rkk=dj?0:i,t=dj?Math.min(9,2+Math.floor(m0.sk.length/2)):0;
  const v=dj?Math.round(60+t*11):60+rkk*18,lb=dj?"修行":`ランク${RN[rkk]}大会`;
  const p={...m0,gr:GR[SP[m0.sp][5]]},e={name:dj?LAB[teach]+"の師匠":`ランク${RN[rkk]}の対戦相手`,sp:0,h:dj?R(360):rkk*60,s2:!dj&&rkk>=4?0:null,li:Math.round(v*1.3),po:v,in:v,hi:v,ev:v,de:v,gr:5,eq:dj?[DJ[teach][0],0,1,3]:rkk>=5?[9,8,4,3]:rkk>=4?[4,5,8,2]:rkk>=2?[0,2,3,6]:[0,1,2,3]};
- const pl=[p,e],mx=[p.li*4,e.li*4],H=[...mx],G=[20,20];
+ const pl=[p,e],mx=[p.li*4,e.li*4],H=[...mx],G=[0,0];
  $("#app").innerHTML=`<div class="tm" id="tm">のこり 60秒</div><div class="vs">${[0,1].map(s=>`<div><div class="mw" id="m${s}"><div class="mon">${svg(pl[s].sp,pl[s].h,pl[s].s2)}</div><div class="fx" id="f${s}"></div></div><b>${pl[s].name}</b><div id="b${s}"></div><div id="g${s}"></div></div>`).join("")}</div><div class="rbar"><div id="rb" class="rb"></div></div><p id="msg"></p><button id="go" class="go">ストップ！</button><div id="leg"></div>`;
  const say=t=>$("#msg").textContent=t,go=$("#go");let T=60;
  const upd=()=>{$("#tm").textContent=`のこり ${Math.max(0,Math.ceil(T))}秒`;[0,1].forEach(s=>{$("#b"+s).innerHTML=bar(H[s],mx[s],"var(--hp)")+`<small>ライフ ${Math.max(0,Math.round(H[s]))} / ${mx[s]}</small>`;$("#g"+s).innerHTML=bar(G[s],100,"#ffc233")+`<small>ガッツ ${Math.floor(G[s])}</small>`})};
